@@ -73,6 +73,7 @@ def load_model_and_scaler():
 
 model, scaler = load_model_and_scaler()
 
+
 # ── Default sample values (used as defaults for low-impact features) ──────────
 NORMAL_SAMPLE = {
     'Time': 40000.0, 'Amount': 45.50,
