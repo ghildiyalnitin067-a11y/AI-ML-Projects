@@ -1,0 +1,102 @@
+gender,age,course,year_of_study,cgpa,marital_status,depression,anxiety,panic_attack,specialist_treatment,year_of_study_num,cgpa_ordinal,cgpa_numeric,gender_binary,mental_health_risk_score,high_risk_flag
+Female,18,engineering,year 1,3.00 - 3.49,0,1,0,1,0,1,4,3.25,0,2,1
+Male,21,islamic education,year 2,3.00 - 3.49,0,0,1,0,0,2,4,3.25,1,1,0
+Male,19,bit,Year 1,3.00 - 3.49,0,1,1,1,0,1,4,3.25,1,3,1
+Female,22,laws,year 3,3.00 - 3.49,1,1,0,0,0,3,4,3.25,0,1,0
+Male,23,mathematics,year 4,3.00 - 3.49,0,0,0,0,0,4,4,3.25,1,0,0
+Male,19,engineering,Year 2,3.50 - 4.00,0,0,0,1,0,2,5,3.75,1,1,0
+Female,23,islamic education,year 2,3.50 - 4.00,1,1,0,1,0,2,5,3.75,0,2,1
+Female,18,bcs,year 1,3.50 - 4.00,0,0,1,0,0,1,5,3.75,0,1,0
+Female,19,human resources,Year 2,2.50 - 2.99,0,0,0,0,0,2,3,2.75,0,0,0
+Male,18,irkhs,year 1,3.50 - 4.00,0,0,1,1,0,1,5,3.75,1,2,1
+Female,20,psychology,year 1,3.50 - 4.00,0,0,0,0,0,1,5,3.75,0,0,0
+Female,24,engineering,Year 3,3.50 - 4.00,1,1,0,0,0,3,5,3.75,0,1,0
+Female,18,bcs,year 1,3.00 - 3.49,0,1,0,0,0,1,4,3.25,0,1,0
+Male,19,engineering,year 1,3.00 - 3.49,0,0,0,0,0,1,4,3.25,1,0,0
+Female,18,kenms,Year 2,3.50 - 4.00,0,0,1,0,0,2,5,3.75,0,1,0
+Male,24,bcs,Year 3,3.50 - 4.00,0,0,0,0,0,3,5,3.75,1,0,0
+Female,24,accounting,year 3,3.00 - 3.49,0,0,0,0,0,3,4,3.25,0,0,0
+Female,24,engineering,year 4,3.00 - 3.49,1,1,1,1,0,4,4,3.25,0,3,1
+Female,20,bit,Year 2,3.50 - 4.00,0,0,1,0,0,2,5,3.75,0,1,0
+Female,18,marine science,year 2,3.50 - 4.00,1,1,1,1,0,2,5,3.75,0,3,1
+Female,19,engineering,year 1,3.00 - 3.49,0,0,0,1,0,1,4,3.25,0,1,0
+Female,18,engineering,Year 2,3.00 - 3.49,0,0,0,0,0,2,4,3.25,0,0,0
+Female,24,bcs,year 1,3.50 - 4.00,0,0,0,0,0,1,5,3.75,0,0,0
+Female,24,engineering,year 1,3.00 - 3.49,0,0,0,0,0,1,4,3.25,0,0,0
+Female,23,bcs,Year 3,3.50 - 4.00,0,1,1,1,0,3,5,3.75,0,3,1
+Female,18,banking studies,year 1,3.50 - 4.00,0,0,0,0,0,1,5,3.75,0,0,0
+Female,19,engineering,year 1,3.50 - 4.00,0,0,0,0,0,1,5,3.75,0,0,0
+Male,18,engineering,Year 2,3.00 - 3.49,1,1,1,0,0,2,4,3.25,1,2,1
+Female,24,bit,Year 3,3.50 - 4.00,1,1,1,1,1,3,5,3.75,0,3,1
+Female,24,bcs,year 4,3.50 - 4.00,0,0,0,0,0,4,5,3.75,0,0,0
+Female,23,business administration,Year 2,3.00 - 3.49,0,0,0,0,0,2,4,3.25,0,0,0
+Male,18,bcs,year 2,3.00 - 3.49,0,0,0,0,0,2,4,3.25,1,0,0
+Male,19,bcs,year 1,3.50 - 4.00,0,0,0,1,0,1,5,3.75,1,1,0
+Male,18,bcs,Year 2,3.50 - 4.00,1,1,1,0,1,2,5,3.75,1,2,1
+Female,19,bit,year 1,3.00 - 3.49,0,1,1,1,0,1,4,3.25,0,3,1
+Female,18,engineering,year 1,2.00 - 2.49,0,0,0,0,0,1,2,2.25,0,0,0
+Female,18,laws,Year 3,3.00 - 3.49,0,1,1,0,0,3,4,3.25,0,2,1
+Female,19,bit,year 1,2.50 - 2.99,0,1,1,1,0,1,3,2.75,0,3,1
+Female,18,irkhs,year 1,3.50 - 4.00,0,0,0,0,0,1,5,3.75,0,0,0
+Female,24,engineering,Year 2,2.50 - 2.99,1,1,0,1,1,2,3,2.75,0,2,1
+Female,24,bit,Year 3,3.00 - 3.49,0,0,1,0,0,3,4,3.25,0,1,0
+Female,22,engineering,year 4,3.50 - 4.00,0,0,0,0,0,4,5,3.75,0,0,0
+Female,20,usuluddin,year 2,3.00 - 3.49,0,1,0,0,0,2,4,3.25,0,1,0
+Male,19,bit,year 1,0 - 1.99,0,0,0,0,0,1,1,1.0,1,0,0
+Male,23,taasl,year 2,3.50 - 4.00,0,0,0,1,0,2,5,3.75,1,1,0
+Male,18,bcs,year 1,3.50 - 4.00,0,0,1,1,0,1,5,3.75,1,2,1
+Female,19,engineering,year 1,3.50 - 4.00,0,0,1,0,0,1,5,3.75,0,1,0
+Female,18,engineering,year 4,3.50 - 4.00,0,0,0,0,0,4,5,3.75,0,0,0
+Male,24,bcs,year 2,3.00 - 3.49,0,1,0,0,0,2,4,3.25,1,1,0
+Female,24,bcs,year 3,3.50 - 4.00,0,0,0,1,0,3,5,3.75,0,1,0
+Female,23,ala,year 1,2.50 - 2.99,1,1,0,1,1,1,3,2.75,0,2,1
+Female,18,bcs,year 2,3.50 - 4.00,0,0,1,0,0,2,5,3.75,0,1,0
+Female,19,biomedical science,year 3,3.00 - 3.49,0,0,0,0,0,3,4,3.25,0,0,0
+Female,20,engineering,year 3,3.00 - 3.49,1,1,1,1,0,3,4,3.25,0,3,1
+Female,19,bcs,year 1,3.50 - 4.00,0,1,0,1,1,1,5,3.75,0,2,1
+Male,21,bcs,year 1,3.00 - 3.49,0,0,0,0,0,1,4,3.25,1,0,0
+Male,23,irkhs,Year 3,3.50 - 4.00,0,0,0,0,0,3,5,3.75,1,0,0
+Female,20,benl,Year 3,3.00 - 3.49,0,1,1,0,0,3,4,3.25,0,2,1
+Female,18,bcs,year 1,3.50 - 4.00,0,0,0,0,0,1,5,3.75,0,0,0
+Female,23,benl,year 1,3.00 - 3.49,0,0,0,0,0,1,4,3.25,0,0,0
+Female,18,it,Year 3,3.00 - 3.49,0,0,0,1,0,3,4,3.25,0,1,0
+Female,19,bcs,year 1,3.50 - 4.00,0,0,0,0,0,1,5,3.75,0,0,0
+Female,18,cts,Year 1,3.50 - 4.00,0,0,0,1,0,1,5,3.75,0,1,0
+Female,24,engineering,year 1,3.50 - 4.00,0,0,0,1,0,1,5,3.75,0,1,0
+Female,24,engineering,year 1,3.50 - 4.00,0,0,0,0,0,1,5,3.75,0,0,0
+Female,23,econs,year 1,3.50 - 4.00,0,1,1,0,0,1,5,3.75,0,2,1
+Female,18,engineering,Year 3,3.00 - 3.49,0,0,1,0,0,3,4,3.25,0,1,0
+Male,19,mhsc,Year 3,3.00 - 3.49,1,1,0,1,0,3,4,3.25,1,2,1
+Female,18,malcom,year 1,3.50 - 4.00,0,1,0,0,0,1,5,3.75,0,1,0
+Female,24,kop,year 4,3.00 - 3.49,0,0,1,0,0,4,4,3.25,0,1,0
+Female,24,biomedical science,year 1,3.00 - 3.49,0,0,0,0,0,1,4,3.25,0,0,0
+Female,18,laws,Year 3,3.50 - 4.00,0,0,0,1,0,3,5,3.75,0,1,0
+Female,19,bit,Year 3,3.00 - 3.49,1,1,0,0,0,3,4,3.25,0,1,0
+Male,18,biomedical science,year 1,0 - 1.99,0,0,0,0,0,1,1,1.0,1,0,0
+Male,24,bit,Year 3,3.50 - 4.00,0,0,1,0,0,3,5,3.75,1,1,0
+Female,24,engineering,year 1,3.50 - 4.00,0,0,1,1,0,1,5,3.75,0,2,1
+Female,23,engineering,year 1,3.00 - 3.49,0,1,0,0,0,1,4,3.25,0,1,0
+Female,18,human sciences,Year 2,3.00 - 3.49,0,0,0,1,0,2,4,3.25,0,1,0
+Female,19,biotechnology,Year 3,0 - 1.99,0,0,0,0,0,3,1,1.0,0,0,0
+Female,18,engineering,year 4,3.50 - 4.00,0,0,0,0,0,4,5,3.75,0,0,0
+Female,24,communication,Year 2,3.50 - 4.00,1,1,1,1,0,2,5,3.75,0,3,1
+Female,24,diploma nursing,year 2,3.50 - 4.00,0,0,0,0,0,2,5,3.75,0,0,0
+Female,19,engineering,year 1,3.00 - 3.49,0,1,1,0,0,1,4,3.25,0,2,1
+Female,19,islamic education,Year 2,3.00 - 3.49,0,0,0,0,0,2,4,3.25,0,0,0
+Male,23,radiography,year 1,3.00 - 3.49,0,0,0,0,0,1,4,3.25,1,0,0
+Female,18,psychology,year 1,3.50 - 4.00,0,1,1,0,1,1,5,3.75,0,2,1
+Female,19,fiqh fatwa,Year 3,3.00 - 3.49,0,0,0,0,0,3,4,3.25,0,0,0
+Female,18,psychology,year 1,3.50 - 4.00,0,1,1,1,0,1,5,3.75,0,3,1
+Male,24,bit,year 1,3.00 - 3.49,0,0,1,0,0,1,4,3.25,1,1,0
+Male,24,engineering,Year 2,2.00 - 2.49,0,0,0,1,0,2,2,2.25,1,1,0
+Female,23,diploma tesl,Year 3,3.50 - 4.00,0,0,0,1,0,3,5,3.75,0,1,0
+Male,18,engineering,Year 2,3.00 - 3.49,0,0,1,0,0,2,4,3.25,1,1,0
+Female,19,engineering,year 2,3.00 - 3.49,1,1,0,0,0,2,4,3.25,0,1,0
+Female,18,benl,year 1,3.00 - 3.49,0,1,0,0,0,1,4,3.25,0,1,0
+Female,24,fiqh,Year 3,0 - 1.99,0,0,0,1,0,3,1,1.0,0,1,0
+Female,18,islamic education,year 1,3.50 - 4.00,0,0,0,0,0,1,5,3.75,0,0,0
+Female,21,bcs,year 1,3.50 - 4.00,0,0,1,0,0,1,5,3.75,0,1,0
+Male,18,engineering,Year 2,3.00 - 3.49,0,1,1,0,0,2,4,3.25,1,2,1
+Female,19,nursing,Year 3,3.50 - 4.00,1,1,0,1,0,3,5,3.75,0,2,1
+Female,23,islamic education,year 4,3.50 - 4.00,0,0,0,0,0,4,5,3.75,0,0,0
+Male,20,biomedical science,Year 2,3.00 - 3.49,0,0,0,0,0,2,4,3.25,1,0,0
