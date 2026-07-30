@@ -61,10 +61,12 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 @st.cache_resource
 def load_model_and_scaler():
-    model_path = 'models/best_model.pkl'
-    scaler_path = 'models/scaler.pkl'
+    model_path = os.path.join(BASE_DIR, 'models', 'best_model.pkl')
+    scaler_path = os.path.join(BASE_DIR, 'models', 'scaler.pkl')
     if os.path.exists(model_path) and os.path.exists(scaler_path):
         model = joblib.load(model_path)
         scaler = joblib.load(scaler_path)
