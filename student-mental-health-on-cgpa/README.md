@@ -1,3 +1,6 @@
+LIVE :https://student-mental-health1.streamlit.app/
+
+
 # Student Mental Health & CGPA Analysis: Predictive Modeling & Streamlit Web App
 
 [![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
