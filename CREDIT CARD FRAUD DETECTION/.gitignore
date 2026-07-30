@@ -1,0 +1,21 @@
+# Environment & Dependencies
+venv/
+.venv/
+env/
+ENV/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Large Datasets (> 100MB)
+data/creditcard.csv
+data/*.csv
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# System Files
+.DS_Store
+Thumbs.db
