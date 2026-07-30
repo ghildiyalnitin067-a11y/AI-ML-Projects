@@ -17,6 +17,7 @@ An end-to-end Data Science and Machine Learning project analyzing the relationsh
 - **Interactive Streamlit Web App (`app.py`)**: Live dashboard featuring interactive EDA charts, cohort filtering (All Students vs. Engineering Majors), and a real-time **Depression Risk Predictor**.
 - **Multi-Algorithm Optimization Suite**: GridSearch hyperparameter tuning across **Random Forest, Decision Trees, XGBoost, Gradient Boosting (GBM), Logistic Regression (L1/L2), SVM, and Stochastic Gradient Descent (SGD)** with 5-fold Stratified Cross-Validation.
 - **Specialized Engineering Analysis (`engineering_student_mental_health_analysis.ipynb`)**: Cohort study analyzing academic pressure and mental health indicators specifically among Engineering students.
+- **MongoDB Database Integration (`src/database.py`)**: Real-time logging of user predictions to MongoDB configured via `.env` environment variables, complete with connection ping testing and prediction history UI.
 - **Cloud Deployment Ready**: Cross-platform path resolution, automatic model training fallback on startup, `.streamlit/config.toml`, and `Procfile` included.
 
 ---
@@ -31,13 +32,15 @@ student-mental-health-on-cgpa/
 ├── src/
 │   ├── __init__.py
 │   ├── data_preprocessing.py                      # Data cleaning & feature pipeline
-│   └── train_model.py                             # ML training & GridSearch tuning pipeline
+│   ├── train_model.py                             # ML training & GridSearch tuning pipeline
+│   └── database.py                                # MongoDB connection & prediction logging service
 ├── models/
 │   ├── best_model.pkl                            # Serialized optimal ML classifier
 │   └── scaler.pkl                                # Fitted StandardScaler artifact
 ├── .streamlit/
 │   └── config.toml                               # Streamlit headless server config & theme
 ├── app.py                                         # Interactive Streamlit Web Application
+├── .env.example                                   # Environment variables template
 ├── student_mental_health_analysis.ipynb           # Jupyter Notebook (Full Dataset)
 ├── engineering_student_mental_health_analysis.ipynb # Jupyter Notebook (Engineering Cohort)
 ├── Procfile                                       # Deployment configuration for web hosts

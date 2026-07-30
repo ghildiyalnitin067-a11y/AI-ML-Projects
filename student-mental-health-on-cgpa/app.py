@@ -8,6 +8,7 @@ import streamlit as st
 
 from src.data_preprocessing import load_data, clean_data
 from src.train_model import train_and_optimize_models
+from src.database import check_mongo_connection, log_prediction, fetch_predictions_history
 
 # Base Directory Resolution for Cross-Platform Cloud Deployment
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -34,12 +35,6 @@ st.markdown("""
         color: #4B5563;
         margin-bottom: 1.5rem;
     }
-    .metric-card {
-        background-color: #F3F4F6;
-        padding: 1rem;
-        border-radius: 8px;
-        border-left: 4px solid #3B82F6;
-    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -62,7 +57,6 @@ def get_model_artifacts():
     cleaned_csv_path = os.path.join(BASE_DIR, 'dataset', 'cleaned_student_mental_health.csv')
 
     if not (os.path.exists(model_path) and os.path.exists(scaler_path)):
-        # Train automatically if deployed on a fresh environment
         train_and_optimize_models(cleaned_csv_path)
 
     model = joblib.load(model_path)
@@ -73,7 +67,7 @@ df = get_clean_dataset()
 
 # Sidebar Navigation & Filters
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Select View", ["Exploratory Data Analysis", "Model Performance", "Live Depression Risk Predictor"])
+page = st.sidebar.radio("Select View", ["Exploratory Data Analysis", "Model Performance", "Live Depression Risk Predictor", "MongoDB Prediction History"])
 
 st.sidebar.markdown("---")
 st.sidebar.title("Cohort Filter")
@@ -82,6 +76,18 @@ cohort_option = st.sidebar.selectbox("Filter Students by Major", ["All Students"
 filtered_df = df.copy()
 if cohort_option == "Engineering Cohort Only":
     filtered_df = filtered_df[filtered_df['course'] == 'engineering'].reset_index(drop=True)
+
+# MongoDB Connection Check Status
+st.sidebar.markdown("---")
+st.sidebar.title("Database Status")
+is_mongo_connected, mongo_msg = check_mongo_connection()
+
+if is_mongo_connected:
+    st.sidebar.success(f"MongoDB Status: Connected")
+    st.sidebar.caption(mongo_msg)
+else:
+    st.sidebar.warning("MongoDB Status: Not Connected (Optional)")
+    st.sidebar.caption("Predictions will run locally. Set MONGO_URI in .env to enable database logging.")
 
 # Page 1: Exploratory Data Analysis
 if page == "Exploratory Data Analysis":
@@ -194,8 +200,8 @@ elif page == "Live Depression Risk Predictor":
         input_features = np.array([[age_val, gender_bin, year_val, cgpa_ord, marital_bin, anxiety_bin, panic_bin]])
         input_scaled = scaler.transform(input_features)
 
-        pred_class = model.predict(input_scaled)[0]
-        pred_proba = model.predict_proba(input_scaled)[0][1] if hasattr(model, 'predict_proba') else None
+        pred_class = int(model.predict(input_scaled)[0])
+        pred_proba = float(model.predict_proba(input_scaled)[0][1]) if hasattr(model, 'predict_proba') else None
 
         st.markdown("---")
         if pred_class == 1 or (pred_proba is not None and pred_proba >= 0.5):
@@ -204,3 +210,39 @@ elif page == "Live Depression Risk Predictor":
         else:
             st.success(f"Low Risk of Depression Detected ({(1 - pred_proba) * 100:.1f}% Confidence)" if pred_proba else "Low Risk of Depression Detected")
             st.info("Student parameters indicate a stable risk profile.")
+
+        # Log prediction to MongoDB if database is connected
+        record_payload = {
+            "age": age_val,
+            "gender": gender_str,
+            "year_of_study": year_val,
+            "cgpa_range": cgpa_str,
+            "marital_status": marital_str,
+            "anxiety": anxiety_str,
+            "panic_attack": panic_str,
+            "predicted_class": pred_class,
+            "risk_level": "High Risk" if pred_class == 1 else "Low Risk",
+            "probability_percent": round(pred_proba * 100, 2) if pred_proba is not None else None
+        }
+
+        db_success, db_msg = log_prediction(record_payload)
+        if db_success:
+            st.success(f"Prediction successfully saved to MongoDB (ID: {db_msg})")
+        else:
+            st.caption(f"Database Notice: {db_msg}")
+
+# Page 4: MongoDB Prediction History
+elif page == "MongoDB Prediction History":
+    st.markdown('<div class="main-title">MongoDB Prediction Logs</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sub-title">Real-time database logs saved from user prediction submissions.</div>', unsafe_allow_html=True)
+
+    if not is_mongo_connected:
+        st.warning("MongoDB connection is currently offline. Please configure MONGO_URI in .env file to enable history view.")
+    else:
+        history = fetch_predictions_history(limit=100)
+        if not history:
+            st.info("No predictions recorded yet in MongoDB. Try submitting a prediction in the Predictor tab!")
+        else:
+            st.write(f"Total Database Logs Fetched: **{len(history)}**")
+            history_df = pd.DataFrame(history)
+            st.dataframe(history_df, use_container_width=True)
