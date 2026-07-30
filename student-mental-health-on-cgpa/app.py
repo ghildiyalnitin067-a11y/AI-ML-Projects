@@ -2,12 +2,9 @@ import os
 import joblib
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import streamlit as st
 
 from src.data_preprocessing import load_data, clean_data
-from src.train_model import train_and_optimize_models
 from src.database import check_mongo_connection, log_prediction, fetch_predictions_history
 
 # Base Directory Resolution for Cross-Platform Cloud Deployment
@@ -49,19 +46,26 @@ def get_clean_dataset():
     df_clean.to_csv(cleaned_path, index=False)
     return df_clean
 
-# Load & Cache Model Artifacts with Automatic Fallback Training
-@st.cache_resource
+# Load & Cache Model Artifacts — load once per app lifecycle
+@st.cache_resource(show_spinner="Loading ML model...")
 def get_model_artifacts():
     model_path = os.path.join(BASE_DIR, 'models', 'best_model.pkl')
     scaler_path = os.path.join(BASE_DIR, 'models', 'scaler.pkl')
-    cleaned_csv_path = os.path.join(BASE_DIR, 'dataset', 'cleaned_student_mental_health.csv')
 
     if not (os.path.exists(model_path) and os.path.exists(scaler_path)):
+        # Fallback: only triggered if pkl files are missing (should not happen on cloud)
+        from src.train_model import train_and_optimize_models
+        cleaned_csv_path = os.path.join(BASE_DIR, 'dataset', 'cleaned_student_mental_health.csv')
         train_and_optimize_models(cleaned_csv_path)
 
     model = joblib.load(model_path)
     scaler = joblib.load(scaler_path)
     return model, scaler
+
+# Cache MongoDB connection check — runs ONCE per session, not on every page render
+@st.cache_resource(show_spinner=False)
+def get_mongo_status():
+    return check_mongo_connection()
 
 df = get_clean_dataset()
 
@@ -73,24 +77,28 @@ st.sidebar.markdown("---")
 st.sidebar.title("Cohort Filter")
 cohort_option = st.sidebar.selectbox("Filter Students by Major", ["All Students", "Engineering Cohort Only"])
 
+
 filtered_df = df.copy()
 if cohort_option == "Engineering Cohort Only":
     filtered_df = filtered_df[filtered_df['course'] == 'engineering'].reset_index(drop=True)
 
-# MongoDB Connection Check Status
+# MongoDB Connection — cached, runs once per session
 st.sidebar.markdown("---")
 st.sidebar.title("Database Status")
-is_mongo_connected, mongo_msg = check_mongo_connection()
+is_mongo_connected, mongo_msg = get_mongo_status()
 
 if is_mongo_connected:
-    st.sidebar.success(f"MongoDB Status: Connected")
+    st.sidebar.success("MongoDB Status: Connected")
     st.sidebar.caption(mongo_msg)
 else:
     st.sidebar.warning("MongoDB Status: Not Connected (Optional)")
-    st.sidebar.caption("Predictions will run locally. Set MONGO_URI in .env to enable database logging.")
+    st.sidebar.caption("Predictions will run locally. Set MONGO_URI in .env or Streamlit Secrets to enable logging.")
 
 # Page 1: Exploratory Data Analysis
 if page == "Exploratory Data Analysis":
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+
     st.markdown('<div class="main-title">Student Mental Health & CGPA Analysis</div>', unsafe_allow_html=True)
     st.markdown(f'<div class="sub-title">Exploratory Data Analysis for <b>{cohort_option}</b> (Total Records: {len(filtered_df)})</div>', unsafe_allow_html=True)
 
@@ -120,6 +128,7 @@ if page == "Exploratory Data Analysis":
         ax1.set_xlabel("CGPA Range")
         ax1.set_ylabel("Student Count")
         st.pyplot(fig1)
+        plt.close(fig1)
 
     with c2:
         st.subheader("Gender Breakdown")
@@ -128,6 +137,7 @@ if page == "Exploratory Data Analysis":
         ax2.set_xlabel("Gender")
         ax2.set_ylabel("Student Count")
         st.pyplot(fig2)
+        plt.close(fig2)
 
     st.markdown("---")
 
@@ -137,9 +147,13 @@ if page == "Exploratory Data Analysis":
     corr_cols = ['age', 'year_of_study_num', 'cgpa_ordinal', 'marital_status', 'depression', 'anxiety', 'panic_attack']
     sns.heatmap(filtered_df[corr_cols].corr(), annot=True, fmt=".2f", cmap="coolwarm", ax=ax3, vmin=-1, vmax=1)
     st.pyplot(fig3)
+    plt.close(fig3)
 
 # Page 2: Model Performance
 elif page == "Model Performance":
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+
     st.markdown('<div class="main-title">Machine Learning Model Comparison</div>', unsafe_allow_html=True)
     st.markdown('<div class="sub-title">Hyperparameter Optimization with GridSearchCV & 5-Fold Stratified Cross-Validation</div>', unsafe_allow_html=True)
 
@@ -163,6 +177,7 @@ elif page == "Model Performance":
     plt.xticks(rotation=20)
     ax4.set_ylim(0, 1.0)
     st.pyplot(fig4)
+    plt.close(fig4)
 
 # Page 3: Live Depression Risk Predictor
 elif page == "Live Depression Risk Predictor":
