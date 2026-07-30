@@ -6,7 +6,7 @@ An end-to-end Machine Learning and Real-Time Web Platform for detecting fraudule
 
 ## Live Streamlit Application
 
-Streamlit App URL: https://credit-card-detection-1.streamlit.app/
+Streamlit App URL: https://card123-detection.streamlit.app/
 
 (Paste your deployed Streamlit URL above)
 
