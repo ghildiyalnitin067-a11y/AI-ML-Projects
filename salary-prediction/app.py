@@ -26,17 +26,6 @@ st.markdown("""
         text-align: center;
         margin-bottom: 2rem;
     }
-    .metric-card {
-        background-color: #F3F4F6;
-        color: #1F2937 !important;
-        padding: 1.2rem;
-        border-radius: 10px;
-        border-left: 5px solid #2563EB;
-        margin-top: 1rem;
-    }
-    .metric-card strong {
-        color: #111827 !important;
-    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -45,9 +34,11 @@ st.markdown('<div class="sub-header">Predict estimated annual salary based on ag
 
 @st.cache_resource
 def load_assets():
-    model_path = os.path.join('models', 'best_model.pkl')
-    data_path = os.path.join('dataset', 'Salary Data.csv')
-    metrics_path = os.path.join('models', 'metrics.json')
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    model_path = os.path.join(base_dir, 'models', 'best_model.pkl')
+    data_path = os.path.join(base_dir, 'dataset', 'Salary Data.csv')
+    metrics_path = os.path.join(base_dir, 'models', 'metrics.json')
     
     if not os.path.exists(model_path):
         st.error(f"Model file not found at '{model_path}'. Please train the model first.")
