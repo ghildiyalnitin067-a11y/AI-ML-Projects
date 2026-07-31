@@ -1,0 +1,8 @@
+{
+    "model_name": "Tuned XGBoost",
+    "train_r2": 0.9642,
+    "test_r2": 0.8872,
+    "mae": 10450.5,
+    "rmse": 14597.43,
+    "cv_mean_r2": 0.8852
+}
