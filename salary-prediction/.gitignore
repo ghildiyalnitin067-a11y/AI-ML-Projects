@@ -1,0 +1,13 @@
+# Virtual Environment
+venv/
+*.pyc
+__pycache__/
+.pytest_cache/
+
+# Jupyter Checkpoints & Catboost logs
+.ipynb_checkpoints/
+catboost_info/
+
+# System files
+.DS_Store
+Thumbs.db
